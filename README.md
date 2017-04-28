@@ -27,16 +27,54 @@ ssl_client_header = SSL_CLIENT_S_DN
 ssl_client_verify_header = SSL_CLIENT_VERIFY
 dns_alt_names = puppet, herra.local
 
+ja /etc/hosts tiedostoon muutetaan sivi:
+
+    127.0.1.1       jani herra.local
+
+    sudo service avahi-daemon restart
+    
 Seuraavaksi tein Puppet modulin
     sudo apt-get install puppet
     siirryin kansioon /etc/puppet/manifests, johon lisäsin tiedoston site.pp, joka sisällöksi rivi
     class {"orja":}
     
     itse modulin kopioin edellisestä tehtävästä, jossa vaihdetaan virtuaalisivu
-    
-    LINKKI
+   
+   LINKKI
+   Seuraavaksi tein orja nimisen modulin tiedostoon /etc/puppet/manifests/orja/manifests/init.pp:
+
+    class orja {
+        package { 'apache2':
+                ensure => 'installed',
+                allowcdrom => 'true',
+        }
+        file { '/home/xubuntu/H4':
+                ensure => 'directory',
+        }
+        file { '/home/xubuntu/H4/heippa.txt':
+                content => 'Heippa!,
+        }
+    }
+
+Tyhjensin certifikaattiavaimet:
 
     sudo service puppetmaster stop
     sudo rm -r /var/lib/puppet/ssl
     sudo service puppetmaster start
+
+Siirryin orjakoneelle, jossa:
+    slave$ sudo apt-get -y install puppet
+
+    sudoedit /etc/puppet/puppet.conf
+
+Add master DNS name under [agent] heading. Puppet will connect to server.
+
+    [agent]
+    server = master.local
+
+    sudo puppet agent --enable
+
+    sudo puppet agent –tvd
+
+
 
