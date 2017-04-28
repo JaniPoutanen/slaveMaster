@@ -6,6 +6,8 @@ h4. a) Master-slave. Aloita tyhjästä koneesta. Tee yhdestä koneesta orja ja t
 
 b) Varaa omalle modulillesi aihe kommenttina tälle sivulle. Yksi työ yhdestä aiheesta. 
 
+Ohjeena käytin sivua: http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04
+
 Master koneella:
     sudo hostnamectl set-hostname herra
     sudo apt-get -y install puppetmaster    
