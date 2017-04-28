@@ -43,11 +43,7 @@ Seuraavaksi tein Puppet modulin
    LINKKI
    Seuraavaksi tein orja nimisen modulin tiedostoon /etc/puppet/manifests/orja/manifests/init.pp:
 
-    class orja {
-        package { 'apache2':
-                ensure => 'installed',
-                allowcdrom => 'true',
-        }
+    class orja {       
         file { '/home/xubuntu/H4':
                 ensure => 'directory',
         }
@@ -75,6 +71,10 @@ Add master DNS name under [agent] heading. Puppet will connect to server.
     sudo puppet agent --enable
 
     sudo puppet agent –tvd
+    
+ Muutaman kirjoitusvirheen korjauksen jälkeen tämä toimi ja sain orjakoneen kotihakemistoon kansion H4, jossa oli tiedosto heippa.txt.
+ 
+ 
 
 
 
