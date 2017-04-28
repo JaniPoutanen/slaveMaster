@@ -27,6 +27,15 @@ ssl_client_header = SSL_CLIENT_S_DN
 ssl_client_verify_header = SSL_CLIENT_VERIFY
 dns_alt_names = puppet, herra.local
 
+Seuraavaksi tein Puppet modulin
+    sudo apt-get install puppet
+    siirryin kansioon /etc/puppet/manifests, johon lisäsin tiedoston site.pp, joka sisällöksi rivi
+    class {"orja":}
+    
+    itse modulin kopioin edellisestä tehtävästä, jossa vaihdetaan virtuaalisivu
+    
+    LINKKI
+
     sudo service puppetmaster stop
     sudo rm -r /var/lib/puppet/ssl
     sudo service puppetmaster start
